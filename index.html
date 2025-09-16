@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數據應用工作坊－Ai 數據分析與自動化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
+            color: #e2e8f0; /* bg-slate-200 */
+            overflow-x: hidden;
+        }
+
+        /* --- 主標題漸層效果 --- */
+        .gradient-text {
+            background-image: linear-gradient(90deg, #67e8f9, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* --- 區塊進入動畫 --- */
+        .content-block {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .content-block.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-900">
+
+    <div class="container mx-auto px-4 py-16 md:py-24">
+        <!-- Header -->
+        <header class="text-center mb-16 md:mb-20 content-block">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+                <span class="gradient-text">數據 x 自動化</span><br>一日衝刺工作坊
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
+                從 Python 數據洞察到 n8n 智慧助理，一天之內，點燃你的數位超能力！
+            </p>
+        </header>
+
+        <!-- Course Details Section -->
+        <div class="max-w-4xl mx-auto mb-16 md:mb-20 p-6 md:p-8 bg-slate-800/50 backdrop-blur-xl border border-fuchsia-500/30 rounded-2xl shadow-lg content-block">
+            <div class="text-center mb-6">
+                <p class="text-slate-400">經濟部產業發展署 x 國立臺中科技大學 永續中心</p>
+                <h2 class="text-2xl md:text-3xl font-bold gradient-text mt-1">🎯 【智造-AI 賦能應用工作坊】</h2>
+                <p class="text-lg text-slate-300 mt-1">免費實體課程</p>
+            </div>
+            
+            <ul class="space-y-4 text-lg">
+                <li class="flex items-start gap-3">
+                    <span class="text-sky-400 mt-1">⚡</span>
+                    <div>
+                        <strong class="text-sky-300">AI 工具｜ChatGPT、Gemini</strong>
+                        <p class="text-slate-300 text-base">→ 報告、簡報、設計一次搞定</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-cyan-400 mt-1">📊</span>
+                     <div>
+                        <strong class="text-cyan-300">數據決策｜Python + Streamlit</strong>
+                        <p class="text-slate-300 text-base">→ Dashboard 即看即用</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-fuchsia-400 mt-1">🔄</span>
+                     <div>
+                        <strong class="text-fuchsia-300">自動化流程｜n8n</strong>
+                         <p class="text-slate-300 text-base">→ 資料收集、通知寄送自動完成，團隊專注核心工作更高效</p>
+                    </div>
+                </li>
+            </ul>
+        
+            <div class="mt-8 pt-6 border-t border-slate-700 text-center">
+                <p class="text-xl font-bold text-amber-300">
+                    🚀 9/20、9/27 在國立臺中科技大學，手把手通通交給你
+                </p>
+                <p class="mt-2 text-sm text-slate-400">
+                    (課程建議使用"付費"的AI, EX ChatGPT, Claude, Gemini..)
+                </p>
+            </div>
+        </div>
+
+        <!-- New Fixed Layout -->
+        <div class="max-w-4xl mx-auto">
+            <!-- 上午場 -->
+            <div class="mb-12 content-block">
+                <div class="flex items-center justify-center mb-6">
+                     <div class="bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-bold py-2 px-8 rounded-full shadow-lg shadow-cyan-500/30 text-xl">
+                         上午場：Python 數據分析極速衝刺
+                     </div>
+                 </div>
+                 <div class="bg-slate-800/50 backdrop-blur-xl border border-sky-500/20 rounded-2xl shadow-lg p-6 md:p-8 space-y-6">
+                    <!-- 09:00 -->
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="bg-sky-500 text-white font-bold w-full md:w-24 flex-shrink-0 text-center py-2 rounded-lg">09:00</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-sky-300">核心語法極速衝刺</h3>
+                            <p class="mt-1 text-slate-300">以最快速度掌握變數、迴圈與套件三大神器，為數據分析打下地基。</p>
+                        </div>
+                    </div>
+                    <!-- 10:10 -->
+                     <div class="flex flex-col md:flex-row gap-4">
+                        <div class="bg-cyan-500 text-white font-bold w-full md:w-24 flex-shrink-0 text-center py-2 rounded-lg">10:10</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-cyan-300">從數據到圖表</h3>
+                            <p class="mt-1 text-slate-300">實戰 Pandas 資料處理，並用 Plotly 將冰冷的數據轉化為生動的互動式圖表。</p>
+                        </div>
+                    </div>
+                    <!-- 11:05 -->
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="bg-teal-500 text-white font-bold w-full md:w-24 flex-shrink-0 text-center py-2 rounded-lg">11:05</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-teal-300">互動儀表板開發</h3>
+                            <p class="mt-1 text-slate-300">學習 Streamlit，將分析成果打包成一個可互動、可分享的 Web App。</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- 午休 -->
+            <div class="my-12 content-block">
+                 <div class="flex items-center justify-center">
+                     <div class="bg-slate-700 text-slate-300 font-bold py-2 px-8 rounded-full flex items-center gap-3">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M208,64a80,80,0,1,0-96,78.2V224a8,8,0,0,0,16,0V142.2A80,80,0,0,0,208,64Zm-80,64a64,64,0,1,1,64-64A64.07,64.07,0,0,1,128,128Z"></path></svg>
+                         <span>12:00 - 13:00 午休充電</span>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- 下午場 -->
+             <div class="mb-12 content-block">
+                <div class="flex items-center justify-center mb-6">
+                     <div class="bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-bold py-2 px-8 rounded-full shadow-lg shadow-fuchsia-500/30 text-xl">
+                         下午場：n8n 自動化與 AI 實戰
+                     </div>
+                 </div>
+                 <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-2xl shadow-lg p-6 md:p-8 space-y-6">
+                    <!-- 13:00 -->
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="bg-purple-500 text-white font-bold w-full md:w-24 flex-shrink-0 text-center py-2 rounded-lg">13:00</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-300">視覺化自動化引擎</h3>
+                            <p class="mt-1 text-slate-300">進入 n8n 的世界，學習節點、工作流、觸發器等核心概念，串接你的 Google 服務。</p>
+                        </div>
+                    </div>
+                    <!-- 14:00 -->
+                     <div class="flex flex-col md:flex-row gap-4">
+                        <div class="bg-fuchsia-500 text-white font-bold w-full md:w-24 flex-shrink-0 text-center py-2 rounded-lg">14:00</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-fuchsia-300">表單驅動工作流</h3>
+                            <p class="mt-1 text-slate-300">建立 Webhook 接收表單資料，並即時寫入 Google Sheet，親身體驗數據在 n8n 節點間的流動。</p>
+                        </div>
+                    </div>
+                    <!-- 15:00 -->
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="bg-pink-500 text-white font-bold w-full md:w-24 flex-shrink-0 text-center py-2 rounded-lg">15:00</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-pink-300">AI 回信機器人</h3>
+                            <p class="mt-1 text-slate-300">終極進化！在工作流中注入 AI 大腦，打造能理解問題並自動生成回信的智慧助理。</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- 結尾 -->
+             <div class="mt-16 content-block">
+                 <div class="flex items-center justify-center">
+                     <div class="text-center">
+                        <div class="bg-gradient-to-r from-slate-600 to-slate-700 text-slate-200 font-bold py-3 px-8 rounded-full flex items-center gap-3 shadow-lg">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M216.36,98.78,149.33,88.3,128,28.31,106.67,88.3,39.64,98.78a16,16,0,0,0-9.4,27.87L82.17,177.3,71.49,244.05a16,16,0,0,0,23.22,16.85L128,228.11l53.29,32.79a16,16,0,0,0,23.22-16.85L195.83,177.3l51.93-50.65a16,16,0,0,0-9.4-27.87Z"></path></svg>
+                         <span>16:30 滿載而歸</span>
+                        </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 簡易的滾動顯示動畫 ---
+        const blocks = document.querySelectorAll('.content-block');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        blocks.forEach(block => {
+            observer.observe(block);
+        });
+    </script>
+</body>
+</html>
+
+
