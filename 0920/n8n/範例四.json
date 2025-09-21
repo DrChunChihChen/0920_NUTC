@@ -1,0 +1,284 @@
+{
+  "name": "範例三",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1456,
+        144
+      ],
+      "id": "9baa6830-1fe2-4d7c-acf6-48515fd2c8f4",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        1200,
+        -176
+      ],
+      "id": "e14d0db5-1272-4414-8e22-3abe5a270849",
+      "name": "When chat message received",
+      "webhookId": "a3fd9222-0bbc-41dd-9a43-e15b39228155"
+    },
+    {
+      "parameters": {
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "\"你是一個聰明的AI助手，回覆時請參考以下的注意事項：\\n- 請一律用繁體中文回覆。\\n- 當使用者需要查詢上市公司資料時，你必須將公司名稱轉換成一個名為 company_name 的 JSON 陣列。\\n- 即使只有一間公司，也必須使用陣列格式。\\n- 範例 1 (單一公司): 如果使用者問「台積電」，你應該傳入 ['台積電']。\\n- 範例 2 (多間公司): 如果使用者問「台積電和聯發科」，你應該傳入 ['台積電', '聯發科']。\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1408,
+        -208
+      ],
+      "id": "b721abda-5f2c-478c-93eb-99c632d25cee",
+      "name": "AI 小幫手"
+    },
+    {
+      "parameters": {
+        "content": "## 工作流名稱:AI Agent 與 Sub workflow。\n### 流程說明: \n   一、透過與 AI 交談，取得上市公司收盤相關資料，並傳送到指定的 Email。\n   二、透過子流程，先過濾自 API 取得的資料，以減少 AI token 的用量。 \n  \n### 詳細內容: \n   一、利用 AI Agent。\n   二、提供 AI 工具用 API 查詢台灣上市公司最近收盤價。\n   三、提供計算機工具供 AI 需要時計算使用。\n   四、提供寄信工具供 AI 需要時寄信使用。\n### 注意事項:\n 1. 使用 API --> 盤後資訊 > 個股日成交資訊\n https://data.gov.tw/dataset/11549\n https://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL?response=open_data\n",
+        "height": 364,
+        "width": 920,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        848,
+        -576
+      ],
+      "id": "627ceff6-c4ab-4546-920b-69823907cc23",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## E13 用到的 Node\n### When chat message received\n## AI Agent\n## Anthropic chat mode\n### OpenAI chat mode\n### Simple Memory\n## Calculator\n## Send mail tool \n## Call n8n workflow tool\n\n# Sub workflow 內\n## Execute subworkflow\n## Http Request\n## Extract from file\n### Filter",
+        "height": 580,
+        "width": 380,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        -576
+      ],
+      "id": "0d31736a-cd33-48f6-8246-56023499548f",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        1584,
+        176
+      ],
+      "id": "3dad0585-0a5a-4125-8790-ca9bbe44dd4c",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "description": "台灣股市全部上市公司最後的收盤資料。",
+        "workflowId": {
+          "__rl": true,
+          "value": "65HdFWvZcK0GDI4W",
+          "mode": "list",
+          "cachedResultName": "sub取得上市收盤數據"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "company_name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('company_name', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "company_name"
+          ],
+          "schema": [
+            {
+              "id": "company_name",
+              "displayName": "company_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "array",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        1984,
+        112
+      ],
+      "id": "bdb5ddd3-e079-455e-83e7-88d7748b72a7",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "sendTo": "elvischennutc@gmail.com",
+        "subject": "股票交易資訊",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1744,
+        112
+      ],
+      "id": "222bac75-fffb-4221-8575-7551e53b203b",
+      "name": "Send a message in Gmail",
+      "webhookId": "21a0ae08-84ee-4f9e-8274-ad7b78f0fe2f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "llWo8bprIRcpHM1C",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        0
+      ],
+      "id": "4529f546-5456-48ff-b751-aaa5996ee881",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CE0jtWZqqtXEp2su",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        272
+      ],
+      "id": "a2550c5a-1623-43b6-a0bd-40f295cf1e4a",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CE0jtWZqqtXEp2su",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI 小幫手",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "13866668-526a-4bf5-b3dd-97da228a2a25",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ec3bcb1ff02cebe531796ae3327c945cc71a1911b326e69c988e809520e41f12"
+  },
+  "id": "Wozrz8Hz2SN56TfR",
+  "tags": []
+}
